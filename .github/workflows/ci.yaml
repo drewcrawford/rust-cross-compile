@@ -1,14 +1,14 @@
 # Triggered when code is pushed to any branch in a repository
 on: push
 jobs:
-	cross-compile:
-		runs-on: ubuntu-latest
-		steps:
-			- uses: actions/checkout@v2
-			- id: build
-			  run: 'cargo test --target x86_64-apple-darwin --no-run --message-format json > target/build-log.txt'
-			- name: Upload output file
-			  uses: actions/upload-artifact@v2
-			  with:
-			  	name: x86_64-apple-darwin
-			  	path: target
+    cross-compile:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - id: build
+              run: 'cargo test --target x86_64-apple-darwin --no-run --message-format json > target/build-log.txt'
+            - name: Upload output file
+              uses: actions/upload-artifact@v2
+              with:
+                  name: x86_64-apple-darwin
+                  path: target

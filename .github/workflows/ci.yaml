@@ -5,8 +5,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+            - id: Rustup-target
+              run: |
+                    rustup target add x86_64-apple-darwin
+                    
             - id: build
-              run: 'cargo test --target x86_64-apple-darwin --no-run --message-format json > target/build-log.txt'
+              run: |
+                    mkdir -p target
+                    cargo test --target x86_64-apple-darwin --no-run --verbose # --message-format json > target/build-log.txt
+                    
             - name: Upload output file
               uses: actions/upload-artifact@v2
               with:
